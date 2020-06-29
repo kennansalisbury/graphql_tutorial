@@ -8,7 +8,12 @@ const schema = require('./schema/schema')
 const mongoose = require('mongoose')
 
 //connect to mlab database
-mongoose.connect('mlab database link goes here with username and password included in full url')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/gql_test', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+})
 mongoose.connection.once('open', () => {
     console.log('connected to database')
 })
