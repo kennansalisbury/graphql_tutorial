@@ -1,9 +1,17 @@
 const express = require('express')
 
+
 //express-graphql allows express server to communicate with and undesrtand graphql
     //use this as a middleware on our query, this acts a single endpoint for querying the data
 const graphqlHTTP = require('express-graphql')
 const schema = require('./schema/schema')
+const mongoose = require('mongoose')
+
+//connect to mlab database
+mongoose.connect('mlab database link goes here with username and password included in full url')
+mongoose.connection.once('open', () => {
+    console.log('connected to database')
+})
 
 const app = express();
 

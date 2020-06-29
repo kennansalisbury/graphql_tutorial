@@ -32,8 +32,9 @@ let authors = [
 const BookType = new GraphQLObjectType({
     name: 'Book',
     fields: () => ({
-        //this is a function because later when we have multiple types referencing each other
-            //unless fields are wrapped in a function one type might not know what another type is
+        //this is a function because when we have types referencing each other
+            //if not in a function, will throw an error reading top to bottom because the referenced type (ex: author type) has not been defined yet
+            //wrapping in a function allows the code to be read from top to bottom, and then the fields/references are only read once a query is executed
         id: {type: GraphQLID},
         name: {type: GraphQLString},
         genre: { type: GraphQLString},
@@ -87,6 +88,18 @@ const RootQuery = new GraphQLObjectType({
             args: { id: {type: GraphQLID}},
             resolve(parent, args) {
                 return _.find(authors, {id: args.id})
+            }
+        },
+        books: {
+            type: new GraphQLList(BookType),
+            resolve(parent, args) {
+                return books
+            }
+        },
+        authors: {
+            type: new GraphQLList(AuthorType),
+            resolve(parent, args) {
+                return authors
             }
         }
     }
