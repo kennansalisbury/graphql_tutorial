@@ -21,7 +21,7 @@ mongoose.connection.once('open', () => {
 const app = express();
 
 //graphql middleware
-app.use('./graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
     //pass schema that tells express graphql about our data and how our graph will look
     //same as schema: schema
     schema,
