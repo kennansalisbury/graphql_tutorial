@@ -1,5 +1,5 @@
 const express = require('express')
-
+const cors = require('cors')
 
 //express-graphql allows express server to communicate with and undesrtand graphql
     //use this as a middleware on our query, this acts a single endpoint for querying the data
@@ -19,6 +19,7 @@ mongoose.connection.once('open', () => {
 })
 
 const app = express();
+app.use(cors())
 
 //graphql middleware
 app.use('/graphql', graphqlHTTP({
