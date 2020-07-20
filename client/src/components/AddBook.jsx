@@ -3,7 +3,7 @@ import {useQuery, useMutation, gql} from '@apollo/client'
 
 //queries & mutations
 import {
-    getAuthorsQuery, 
+    getAuthorsQuery, getBooksQuery, 
     // addBookMutation
 } from '../queries/queries'
 
@@ -50,7 +50,8 @@ const AddBook = props => {
                 name: bookName,
                 genre: genre,
                 authorId: authorId
-            }
+            },
+            refetchQueries: [{query: getBooksQuery}]
         })
     }
     
