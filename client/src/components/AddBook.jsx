@@ -4,17 +4,8 @@ import {useQuery, useMutation, gql} from '@apollo/client'
 //queries & mutations
 import {
     getAuthorsQuery, getBooksQuery, 
-    // addBookMutation
+    addBookMutation
 } from '../queries/queries'
-
-const addBookMutation = gql`
-    mutation($name: String!, $genre: String!, $authorId: ID!) {
-        addBook(name: $name, genre: $genre, authorId: $authorId) {
-            name
-            id
-        }
-    }
-`
 
 const AddBook = props => {
 
