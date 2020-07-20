@@ -2,21 +2,31 @@ import {gql} from '@apollo/client'
 
 
 const getBooksQuery = gql`
-{
-    books {
-        name
-        id
-    } 
-}
+    {
+        books {
+            name
+            id
+        } 
+    }
 `
 
 const getAuthorsQuery = gql`
-{
-    authors {
-        name
-        id
+    {
+        authors {
+            name
+            id
+        }
     }
-}
 `
 
-export {getBooksQuery, getAuthorsQuery}
+//mutations
+const addBookMutation = gql`
+    mutation {
+        addBook(name: $name, genre: $genre, authorId: $authorId) {
+            name
+            id
+        }
+    }
+`
+
+export {getBooksQuery, getAuthorsQuery, addBookMutation}
